@@ -5,7 +5,7 @@ ipcRenderer.on('about-window:info', (_: any, info: AboutWindowInfo, app_name: st
     // Note: app.getName() was replaced with app.name at Electron v7
     const open_home = () => shell.openExternal(info.homepage);
     const content = info.use_inner_html ? 'innerHTML' : 'innerText';
-    document.title = info.win_options.title || `About ${app_name}`;
+    document.title = info.win_options.title || `Acreca de ${app_name}`;
 
     const title_elem = document.querySelector('.title') as HTMLHeadingElement;
     title_elem.innerText = `${app_name} ${version}`;
@@ -22,7 +22,7 @@ ipcRenderer.on('about-window:info', (_: any, info: AboutWindowInfo, app_name: st
     if (info.copyright) {
         copyright_elem[content] = info.copyright;
     } else if (info.license) {
-        copyright_elem[content] = `Distributed under ${info.license} license.`;
+        copyright_elem[content] = `Distribuido bajo licencia ${info.license}.`;
     }
 
     const icon_elem = document.getElementById('app-icon') as HTMLImageElement;
@@ -35,7 +35,7 @@ ipcRenderer.on('about-window:info', (_: any, info: AboutWindowInfo, app_name: st
 
     if (info.bug_report_url) {
         const bug_report = document.querySelector('.bug-report-link') as HTMLDivElement;
-        bug_report.innerText = info.bug_link_text || 'Report an issue';
+        bug_report.innerText = info.bug_link_text || 'Informar de un error';
         bug_report.addEventListener('click', e => {
             e.preventDefault();
             shell.openExternal(info.bug_report_url);
