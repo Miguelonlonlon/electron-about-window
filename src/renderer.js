@@ -4,7 +4,7 @@ const electron_1 = require("electron");
 electron_1.ipcRenderer.on('about-window:info', (_, info, app_name, version) => {
     const open_home = () => electron_1.shell.openExternal(info.homepage);
     const content = info.use_inner_html ? 'innerHTML' : 'innerText';
-    document.title = info.win_options.title || `Acreca de ${app_name}`;
+    document.title = info.win_options.title || `Acerca de ${app_name}`;
     const title_elem = document.querySelector('.title');
     title_elem.innerText = `${app_name} ${version}`;
     if (info.homepage) {
